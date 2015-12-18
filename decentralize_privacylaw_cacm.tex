@@ -1,0 +1,223 @@
+% THIS IS SIGPROC-SP.TEX - VERSION 3.1
+% WORKS WITH V3.2SP OF ACM_PROC_ARTICLE-SP.CLS
+% APRIL 2009
+%
+% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
+% LaTeX2e document class file for Conference Proceedings submissions.
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V3.2SP) *DOES NOT* produce:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) Page numbering
+% ---------------------------------------------------------------------------------------------------------------
+% It is an example which *does* use the .bib file (from which the .bbl file
+% is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission,
+% you need to 'insert'  your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% Questions regarding SIGS should be sent to
+% Adrienne Griscti ---> griscti@acm.org
+%
+% Questions/suggestions regarding the guidelines, .tex and .cls files, etc. to
+% Gerald Murray ---> murray@hq.acm.org
+%
+% For tracking purposes - this is V3.1SP - APRIL 2009
+
+\documentclass{acm_proc_article-sp}
+
+\begin{document}
+
+\title{Privacy Law in a World of Decentralised Data Architectures}
+\subtitle{}
+
+\numberofauthors{4} 
+\author{
+\alignauthor
+Author One\titlenote{Now on postdoctoral fellow at ABC University}\\
+       \affaddr{Institute One}\\
+       \affaddr{Address One}\\
+       \email{author.one@emails.com}
+\alignauthor
+Author Two\\
+       \affaddr{Institute Two}\\
+       \affaddr{Address Two}\\
+       \email{author.two@emails.com}
+\and % go to new row
+\alignauthor
+Author Three\\
+       \affaddr{Institute Three}\\
+       \affaddr{Address Three}\\
+       \email{author.three@emails.com}
+\alignauthor
+Author Four\\
+       \affaddr{Institute Four}\\
+       \affaddr{Address Four}\\
+       \email{author.four@emails.com}
+}
+
+\date{20 April 2013}
+
+
+\maketitle
+\begin{abstract}
+Information privacy law fundamentally depends on certain concepts and distinctions, such as ‘data controller’, ‘data processor’, and ‘personal data’. However, as information architectures become more decentralised and autonomous, these concepts start to lose their meaning. This is because such architectures often explicitly prevent any single participating entity from exerting control over the network or data stored therein, therefore explicitly negating the ability of a single entity to influence or control the network. With the emergence and increasing popularisation of such networks, we ask - will some of the core legal concepts soon be obsolete? And if so, who, if anyone, might become responsible for ensuring the regulatory objectives set out in existing law?
+ 
+We analyse several decentralised information storage and management systems, consisting of blockchain, DHT, bittorrent and other architectures, to illustrate the problems with the core concepts used in data privacy laws in these settings. We conclude that at a technical level, these systems are fundamentally at odds with the typical scenarios for which information privacy law was designed. In several of these systems even the most basic legal concepts have changed so dramatically as to render them meaningless. If these systems ever become widely used, they are likely to present significant challenges for the application of existing laws. Both policymakers and advocates of decentralisation should therefore consider these challenges in their approaches. We conclude by suggesting potential ways forward for regulation in a world of decentralised architectures. 
+\end{abstract}
+
+% A category with the (minimum) three required fields
+\category{H.4}{Information Systems Applications}{Miscellaneous}
+%A category including the fourth, optional field follows...
+\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+
+\terms{Theory}
+
+\keywords{ACM proceedings, \LaTeX, text tagging} % NOT required for Proceedings
+
+\section{Introduction}
+
+Many jurisdictions around the world have enacted legislation to regulate the use of personal data. Since their inception in the 1970's and 80's, these regimes have struggled to keep up with the changing pace of technology. Principles designed to deal with organisation-centric mainframe computers have had to reckon with the advent of personalised computing, the emergence of the web, and more recently, the mass adoption of cloud infrastructure. At each stage the law has been reinterpreted to fit the latest wave of technical development.
+ 
+While these previous waves involved forms of decentralisation, a new wave of further radical decentralisation may be on the horizon. Proponents of greater decentralisation hope that alternative architectures will create a seismic shift en par with previous transformations in computing, by decoupling the provision of web services from the collection of personal data, and moving towards decentralised and distributed systems for information storage, networking and computation.
+
+
+ 
+‘Personal data stores’ (PDSs) - also referred to as personal data lockers or personal information management services (PIMS) - enable individuals to store and manage their data for their own purposes. While they are similar to popular personal cloud file storage and synchronisation services (such as DropBox or Google Drive), many PDS systems differ in attempting to give users ultimate technical control over their data. They may involve client-side encryption and/or designed to be self-hosted by the user, and run as lightweight servers on ordinary consumer devices or low-cost purpose-built hardware.[1]
+ 
+PDSs allow for a certain degree of decentralisation, by moving private keys, hosting and / or computation from the service provider to the individual themselves. But they still rely to a significant degree on centralised architecture - servers and clients, identity verification through certificate authorities, and data siloes. Decentralisation can be pursued further at more fundamental levels. For example, peer-to-peer (P2P) networks represent an alternative to the traditional client-server architecture. By creating a virtual overlay on top of a physical network, they allow any computer in the network to communicate directly with any other. Rather than any one entity deciding how and where to store data, the protocol itself determines the most efficient means of distribution and access across the 'swarm' of peers. P2P networks are highly resilient and efficient, difficult to take down and easy to participate in.
+ 
+Established implementations of P2P networks include the popular BitTorrent protocol, which accounts for a significant proportion of all internet traffic,[2] and anonymous communication channels like Freenet and The Onion Router (TOR). While they are decentralised in principle, in practice they usually involve elements of centralisation. For instance, BitTorrent relies on centralised directories of trackers, and while TOR anonymises communication, its users are still reliant on incumbent client-server architecture. More recent systems aim to overcome this and instill further decentralisation, with the use of distributed hash tables (DHT) and distributed public key infrastructure.[3]
+ 
+A recent wave of enthusiasm for decentralization has centred around so-called ‘blockchain’ technologies, popularised by the Bitcoin crypto-currency. A blockchain is a form of publicly verifiable, distributed, open ledger. Individual nodes operating the protocol (known as ‘miners’ or ‘farmers’) are given problems which are computationally costly to solve, but whose cryptographic proofs-of-work are cheap for other nodes to check.[4] This process allows the network to achieve consensus over the contents of the blockchain without recourse to any central trusted authority. In the case of the Bitcoin protocol, the blockchain stores records of transactions between digital wallets, but the same technology could be used to store any kind of key-value pairs, triples, or code.
+ 
+A wide variety of potential blockchain applications are currently being explored. These range from creating records of ownership of physical or digital goods such as land and domain names; statements of provenance for use in domains like supply-chain auditing; and even self-executing ‘smart contracts’ which automatically disburse digital cash according to machine-readable contractual obligations without the need for traditional legal institutions.[5] These efforts combine decentralisation on multiple levels, ranging from the physical storage of data, to networking, computation, identity, verification and trust.
+ 
+The motivations for re-decentralisation are not only technical but economic and political, and include ‘competition, innovation, resilience, open standards and privacy’ according to a recent conference on the subject.[6] Some proponents of decentralisation have even more ambitious aims, including to disrupt and replace established institutions such as central banks, corporations and existing systems of legal contract.[7]
+ 
+Some proponents claim that these decentralised systems are inherently more privacy-preserving than existing centralised alternatives.[8] Even if this were true at a technical level (an arguable claim), it does not necessarily ensure that they are also compliant with major privacy laws. It is not enough for these systems to align with general regulatory goals; they must also comply with the letter of the law if they wish to avoid the regulator’s ire.
+ 
+The remainder of this article explains the challenge these decentralised systems present for existing legal categories. It explores the myriad conflicts between the core concepts of information privacy law and the technical reality of decentralised systems. We conclude by discussing potential roles for information privacy regulation in a future world of decentralised architectures.
+2. Key Concepts in Information Privacy Law
+The majority of existing information privacy laws have their basis in a set of Fair Information Practice Principles (FIPPS) developed in the 1970s and 80s.[9] These principles have influenced the data protection laws of the European Union (widely regarded as the 'engine of a global regime'[10]), various US sector-specific laws at both state and federal levels, and many other national regimes. They set out a range of rights, obligations and prohibitions regarding the processing of personal data. The scope of these laws depends on certain key definitions and concepts, which determine when, how and to whom the law applies.
+ 
+The primary focus of these laws is the use of personal information by organisations. When organisations use personal data, they must fulfill certain obligations and respect certain rights of the individuals to whom the data relate. In data protection parlance, the organisation using the data is known as the ‘data controller’, while the individual the data relate to is termed the ‘data subject'. The application of the law therefore depends on precisely how core concepts like ‘data controller’, ‘data subject’, and ‘personal data’ are defined.
+ 
+Data controller
+Take first the notion of a data controller, the primary entity of regulation and the ‘focal point of information privacy law’.[11] A data controller is defined in EU law as the entity responsible for deciding the purposes of processing personal data. For instance, in a typical scenario, a data controller might be a retailer that collects customer information for the purposes of receiving payment and delivering purchased goods. The data controller has a range of obligations, including:
+ 
+-       to ensure that the data are processed ‘fairly and lawfully’
+-       to identify explicit purposes prior to collecting data
+-       to ensure the data are adequate, relevant, not excessive in relation to the purposes for collection, as well as accurate and up-to-date.
+-       to ensure the data are secure
+-       to ensure that data will be adequately protected if transferred to other jurisdictions
+-       to respect the rights of data subjects to access their data, to request their deletion, and to be informed about the purposes of processing and the logic behind automated decisions based on their data.
+ 
+Whether or not an entity counts as a data controller therefore has a significant bearing on the extent of their regulatory responsibilities. From the data subject’s perspective, exactly which entity is the relevant data controller is also important since it affects their ability to exercise their rights and seek redress for potential privacy violations.
+ 
+Data Processor
+In addition to data controllers, there may also be third parties who undertake processing on behalf of the data controller, under their instruction. For instance, a retailer might outsource their online e-commerce operations to a cloud service provider. In this case, even though the retailer is responsible for deciding the purposes of processing their customer data, the data processing itself is carried out by the cloud service provider. Such third party providers are defined as data processors, and they have less onerous regulatory obligations. The data controller is largely responsible for ensuring, usually through a contractual service agreement, that the data processor meets the relevant security requirements.
+ 
+Similar distinctions exist in various US sector-specific information privacy laws, where the terms ‘data owner’ and ‘service provider’ are roughly equivalent to the EU categories of controller and processor. For instance, in various state-level data breach notification laws, service providers are responsible for reporting breaches to data owners, who in turn must notify the affected individuals.[12] In either case, the distinction between controller and processor (or, in the US, owner and service provider) is contentious, since the obligations on processors are less onerous compared to those of controllers.
+ 
+Personal Data
+Another key definition is that of personal data. In EU law, the definition of personal data is any data that ‘relate to’ an individual who is alive and is identifiable either from those data, or from a combination of those data and other information that the data controller has or is likely to gain possession of. In tieing the definition of personal data to identifiability, the legislation implies that an entity may process ‘anonymised’ data without necessarily invoking the usual duties of a data controller or processor. Similarly, if data is encrypted such that it cannot be used (on its own or in combination with other data) to identify an individual, it would not constitute personal data. Similar principles apply in contexts where a provider doesn’t have access to the decryption keys and is therefore considered to be a ‘mere conduit’.[13] The precise definition of identifiability has been heavily contested in both the European (Millard 2011) and U.S. contexts (Schwartz & Solove 2011).
+ 
+Domestic Use
+An important exemption granted in the EU law concerns the processing of personal data which is undertaken in a purely personal or ‘domestic’ capacity.[14] This means the obligations of data controllers do not apply to individuals who process personal data in such a capacity. As with the other core concepts, its precise scope has been the subject of disagreement between lawmakers, regulatory bodies and the courts.[15]
+ 
+While there is still significant disagreement about the precise definition of these concepts, their application to a range of typical scenarios - such as customer-service provider or employee-employer - is relatively well established. Major technological developments that have emerged since the EU’s 1995 Data Protection Directive, such as cloud computing and social networking, have been integrated into the legal framework through the application of these core categories. For instance, in a cloud computing scenario, where the service provider outsources to a cloud computing platform, it is generally assumed that the service provider is the data controller and the cloud provider is a data processor.[16] Similarly, the application of data protection law to social networking sites involves first determining if and when users of such sites could be considered data controllers.[17]
+3. Decentralisation meets Information Privacy Law
+When the two worlds of information privacy law and decentralised information systems collide, a gamut of conceptual problems arise. The new wave of decentralised technologies threaten to stretch the application of these categories to breaking point. This is unsurprising when we consider the paradigmatic cases for which information privacy and data protection laws were designed.
+ 
+Such cases involve a limited number of established entities, legally incorporated in a particular jurisdiction, with a physical location, which have primary control over and responsibility for the processing of personal data. In such settings, the obligations imposed on data controllers and processors seem practical and sensible, since they are generally technically capable of fulfilling such requirements. Data controllers (and processors) can reasonably be held accountable for ensuring that data is processed fairly and lawfully, because the processing involves software and data under their possession and control.
+ 
+But decentralisation undermines the traditional role of the data controller. Not only does it potentially make the traditional duties of the data controller harder to fulfill, but in some cases, it calls into question the very designation of data controller status. Decisions about where to store data and how to process it are made algorithmically, and implemented by swarms of disparate computers that are tied together by nothing more than common technical protocols. When decentralised systems involve personal data, who is the data controller, if anyone?
+ 
+In both European and US contexts, there are large bodies of case law and regulatory guidance on determining whether and when an entity counts as a data controller. Unfortunately, the scenarios discussed rarely depart from centralised settings, and are thus not directly applicable in the context of decentralisation. In the absence of direct guidance, the legal principles and case law allow various interpretations of the application of data controllership status to the various decentralised systems described above.
+Decentralised Personal Data Stores 
+Consider the case of a commercial service which provides a cloud-based personal data store, which users pay a subscription fee to use. The service provider supplies the software and a cloud platform for hosting the PDS, but does not hold a copy of the user’s private decryption key. Data is encrypted by the user’s device before being sent to the server.[18] Thus, while the service provider is responsible for the software and cloud storage, it is unable to access the user’s data (apart from the contact and payment details the customer provided when paying for the service). In this sense, the PDS is decentralised.
+ 
+Would such a PDS provider be a data controller under EU law? Some features of the scenario suggest they might be; the provider is a commercial operator (and thus has a ‘gainful interest’ in the processing[19]), and is processing some personal data that is identifiable to the customer. Furthermore, since the provider writes the software, they still have a measure of influence over what kinds of processing might take place.
+ 
+But making the PDS provider a data controller would also present problems. Most of the user data is encrypted with the user’s private keys in such a way that the provider cannot access it. Even if this encrypted data counts as personal data, many of the traditional duties of a data controller are impossible to fulfill with respect to it. For instance, because it can’t decrypt the data, the provider cannot ensure that it is adequate, relevant and not excessive in relation to the purposes of processing; nor that it is accurate and up-to-date. It is also unclear whether the provider can really be held responsible for determining the purposes of processing, since it is up to the user to decide how to use the PDS service and the provider is not privy to their activity. In addition, this makes the requirement to notify and inform data subjects regarding purposes impractical. Other issues to do with data sharing and transfers to third parties are also outside the provider’s sphere of control.
+ 
+Given these difficulties, one possibility would be to treat the user themselves as a data controller, rather than the service provider. The idea of an individual being their own data controller has indeed been suggested by some PDS providers, policymakers and legal scholars.[20] In this arrangement, the individual would bear responsibility for following the regulatory requirements, and the PDS provider would have only minor obligations, if any. But this arrangement is not ideal. First. it results in the slightly absurd situation that an individual, as a data controller, would have obligations towards himself as a data subject. This jurisprudential absurdity might be avoided if such processing were to fall under the ‘domestic use’ exemption. In which case, the PDS provider would avoid data controller responsibilities.
+ 
+ 
+ 
+But more fundamentally, this arrangement arguably shifts a great deal of the legal responsibility for privacy protection from the service provider to the individual. It is not clear that any added technical protection would outweigh the resulting loss of legal protections. Since the PDS provider is still largely responsible for the service’s design, should they not remain at least partially liable for privacy violations?
+ 
+In a world of decentralised personal data stores, there is no clean and tidy way to apply the category of data controller, and thus the locus of information privacy law is lost.
+Peer-to-peer networks and blockchains
+This problem may be even worse in the case of distributed networks, where there is no single service provider to point to as a potential data controller. This is already a pressing issue in so far as existing P2P networks such as BitTorrent involve identifiable personal data.[21] But some emerging distributed systems - such as MaidSafe, IPFS and Ethereum - are designed to act as the underlying platform for a whole range of applications beyond simple filesharing. They will therefore necessarily involve processing an even greater variety of personal data.
+ 
+These systems are designed to replace server-side data storage entirely with distributed swarms of autonomous nodes running a common protocol. This means that personal data will be stored not in a finite number of servers under the control of a single data controller or processor, but instead spread across an indefinite number of nodes. Many basic decisions about how to store and process data are baked into the protocol and executed by the nodes automatically. In such a situation, even identifying which nodes have been or will be involved in a given instance of processing becomes incredibly complex.
+ 
+This creates an even greater headache for the application of information privacy law. In such cases, the data controller is elusive. Attempting to proceed on the basis of ownership of the infrastructure on which the data is stored and processed would be impractical, given the highly automated and dynamic manner in which the protocol distributes activity amongst any number of participating nodes. In such cases, the entity responsible for deciding the purposes of processing personal data is arguably the protocol itself. The suggestion that every node involved in the processing should be considered a potential data controller is therefore unworkable.[22]
+ 
+But protocols have to be designed and implemented by human developers. Could the protocol developers therefore ultimately be held responsible as data controllers? Many of the emerging decentralized systems, despite being benefitting from large volunteer communities, are also supported by teams of developers employed by legally incorporated entities. For instance, the Bitcoin and Ethereum blockchain systems each have corresponding formally incorporated foundations, who support the work of the core development teams.[23] Regulators, eager to place data controller responsibility on a familiar-looking legal entity, might turn their eye to these organizations. Unfortunately, they are unlikely to find willing or capable regulatees. While they may be able to exert a degree of influence over the direction and maintenance of the core underlying infrastructure, they are not in a position to exercise the responsibilities of a data controller, which require fine-grained controls and oversight of personal data. And neither are they responsible for the myriad applications that may be built on top of their infrastructure, such as Bitcoin exchanges or Ethereum provenance tracking services.
+ 
+Indeed, these higher-level applications may be a more appropriate target for data controller status. They are more likely to have oversight of the use of personal data on the network, and are more akin to existing service providers. Just as we place responsibility on websites rather than the web itself, we might hold application developers responsible rather than the underlying blockchains. If these applications were to operate like centralized intermediaries, there would be a strong case for treating them as data controllers. But since the whole purpose of decentralized architectures is to reduce reliance on centralized intermediaries, many of the applications that run atop p2p networks and blockchains are likely to be built in ways that relinquish control over user data.
+4. Ways forward:
+Attempts to locate in decentralized systems a single entity who might meet the usual requirements of a data controller are fraught with difficulty. Decentralised systems have evolved thus far without feeling the full weight of the constraints imposed on ordinary data controllers.
+ 
+In so far as the creators of these systems have considered legal implications, they often claim that there technologies align with existing legal frameworks, if they do not bypass them entirely. For instance, the developers of one decentralized personal data architecture claim it is “aligned with the European Commission’s 2012 reform of the data protection rules [5]” (Montjoye 2012). It may be true that these systems align with the general regulatory aims, but as we have seen, there remain significant differences in the fundamental assumptions behind information privacy law and decentralization.
+ 
+These issues have also received scant attention in regulatory and policy discussions. The regulatory aspects of blockchains have thus far been confined to issues of financial regulation, due to the popularity of cryptocurrency applications. Comparatively little has been considered on the information privacy aspects, especially given the new applications of blockchains to things other than finance.
+ 
+A major shift towards network autonomy would have far-reaching the implications for the law. The difficulties in identifying any viable data controller would have knock-on effects for many of the pressing privacy law issues of the day, from the cross-border transfers and the future of the EU-US ‘safe harbor’, to the so-called ‘right to be forgotten’. In the absence of viable data controllers, the existing law offers little protection to data subjects. Even if decentralized systems provide a better technical basis for privacy, by baking rights into the architecture, it is unclear whether they can provide sufficient protection through code alone.
+ 
+If decentralised systems are intended for mass adoption, lack of regulation and enforceable data subject rights could lead to a lack of consumer confidence, undermining their viability. The spread of decentralised systems may need to be predicated on some significant regulatory shifts: either the law must change to fit the technology, or the technology to fit the law, or a combination of both.
+ 
+Regulatory reform must start by acknowledging that there may not always be a viable entity to act as data controller. This fits the legal model advocated in Diaz, Tene, Gurses (2013), in which privacy-enhancing services which may be offered by a service provider but “do not depend on active data controller implementation”. Such ‘collaborative applications without a central data controller’ may need to be given exemption from the usual class of data controller obligations.
+ 
+We may also need to allow for more nuanced configurations of the controller/processor distinction. This aligns with suggestions for regulation of cloud computing, in which the “simplistic binary controller/processor distinction” is abolished in favour of a “principle of end to end accountability for personal data”, where numerous parties are held accountable in proportion to their level of control and responsibility.[24]
+
+Finally, regulators should recognise that decentralized architectures may have a role to play in implementing functional analogues of data controller responsibilities in a decentralized setting. These include both access control and information accountability (Weitzner et al, [decentralised policy enforcement papers], TBC).
+
+Conclusions
+Effective regulation requires technical, legal, social and market mechanisms to combine (Lessig).
+
+at present, there is a mismatch between these different factors, which is exacerbated in the case of decentralised systems.
+
+Advocates of decentralisation present a compelling vision of a cryptography-driven decentralised network, where privacy is somehow baked in to the protocols. In these proposals, the role for legal mechanisms is uncertain. but in reality these systems are never perfect, and centralisation usually creeps back in somewhere (see e.g. bitcoin exchanges, funding of core internet infrastructure).
+
+We therefore need both, and they need to work in harmony rather than against each other.
+
+
+[1] Owncloud, Unhosted, FreedomBox.
+[2] Although it has fallen from 30-40% to just 5% in recent years e.g. http://www.cantechletter.com/2015/05/bittorrent-traffic-falling-dramatically-as-netflix-rises-says-new-report/
+[3] On distributed hash tables, see e.g. Kademlia. Used for example in TOR’s ‘hidden services’. On Distributed file storage, see BitTorrent Sync, Tahoe LAFS. On distributed authentication infrastructure, see e.g. NameCoin, Maidsafe, Storj. David Irvine on ‘self-authentication’.
+[4] Jakobsson, Markus; Juels, Ari (1999). "Proofs of Work and Bread Pudding Protocols". Communications and Multimedia Security (Kluwer Academic Publishers): 258–272.
+[5] See e.g. NameCoin, Provenance, Ethereum.
+[6] The stated aims of a recent conference on redecentalisation http://redecentralize.org/conference/
+[7] E.g. Proponents of the BitCoin crypto-currency claim that it removes the need for traditional financial institutions and central banks (Nakamoto https://btcft.com/topic/1/bitcoin-white-paper , Brito & Castillo 2013 - https://www.cis.org.au/images/stories/policy-magazine/2013-summer/29-4-13-jbrito-acastillo.pdf ); meanwhile, the potential of blockchain for new approaches to law and business incorporation through 'smart contracts' has also been noted (e.g. De Philipi 2015 https://www.intgovforum.org/cms/wks2015/uploads/proposal_background_paper/SSRN-id2580664.pdf , Larimer, Stan. "Bitcoin and the Three Laws of Robotics". Let's Talk Bitcoin. Retrieved 2 July 2014.). The extent to which decentralised technologies might disrupt these institutions is a pressing issue, but it is not our focus here. Instead, we discuss the more immediate challenge that existing data privacy laws pose for emerging decentralised systems.
+[8] Zyskind et al (2015) http://web.media.mit.edu/~guyzys/data/ZNP15.pdf
+Enigma http://enigma.media.mit.edu/enigma_full.pdf. For discussion of the privacy risks and advantages of blockchain-based technologies, see e.g. http://theodi.org/blog/impact-of-blockchains-on-privacy and http://www.firstpost.com/business/true-financial-privacy-doesnt-exist-for-businesses-operating-on-bitcoin-blockchain-analyst-2523680.html
+[9] FIPPS - e.g. OECD (1980)
+[10] TBC, regarding the data Protection Directive (soon to be replaced by a general Regulation).
+[11] For discussion of the role of the data controller in privacy law, see e.g. Diaz, Tene, Gurses http://moritzlaw.osu.edu/students/groups/oslj/files/2013/12/9-Diaz-Tene-Gurses.pdf
+[12] Sotto & Simpson
+[13]  The term ‘mere conduit’ has been used in the EU’s E-Commerce Directive as well as US health data privacy law (HIPAA), to refer to situations where the lack of access to data by a service provider is grounds for exempting them from certain obligations http://safegov.org/2013/2/20/are-cloud-service-providers-maintaining-encrypted-data-business-associates-under-hipaa
+[14] For example, the UK DPA: “Personal data processed by an individual only for the purposes of that individual’s personal, family or household affairs (including recreational purposes) are exempt from the data protection principles and the provisions of Parts II and III.” In the proposed regulation, in Article 2(2)(d) the exemption is for: “processing of personal data … by a natural person without any gainful interest in the course of its own exclusively personal or household activity”
+[15] See Lindqvist case. ICO vs CJEU judgement.
+[16] A29WP Opinion on cloud computing
+[17] A29WP opinion on social networking.
+[18] Examples: Mega, Mydex, Cozy Cloud.
+[19] The term ‘gainful interest’ is used in the proposed general data protection regulation as a way to distinguish data controllers from mere domestic users. See A29WP: http://ec.europa.eu/justice/data-protection/article-29/documentation/other-document/files/2013/20130227_statement_dp_annex2_en.pdf
+[20] See Poikolla, Kuikkaniemi and Honko (2015) https://www.lvm.fi/docs/en/3759139_DLFE-27119.pdf , Alison White (2015) “The Citizen Controller” https://ico.org.uk/media/about-the-ico/events-and-webinars/1431867/ico-scotland-conference-2015-alison-white-the-citizen-controller.pdf , Diaz, Tene, Gurses (2013)  
+[21] Especially since, despite common perceptions, they are easily de-anonymised (tbc)
+[22] E.g. Krohn-Grimberghe and Sorge http://cryptome.org/2013/09/bitcoin-practical-aspects.pdf
+[23] See the Bitcoin Foundation and the Ethereum Foundation.
+[24] Millard C., Cloud legal project TBC. As in the Canadian personal data protection regulations of 2002 (TBC)
+
+
+\bibliographystyle{abbrv}
+\bibliography{sample}
+
+%\balancecolumns 
+
+\end{document}
